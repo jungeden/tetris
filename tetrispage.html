@@ -188,108 +188,179 @@
         let n = 5;
         let plus = 0;
         let start = 0; // 버튼 눌렀을때 실행
-        let newblock = Block(n, plus, start);
+        while (
+          [11, 12, 13, 14, 15, 16, 17, 18, 19, 20].some(
+            (isblock) =>
+              document.getElementById(isblock).style.backgroundColor ===
+              "rgb(70, 70, 70)"
+          ) ||
+          start == 0 //버튼 눌렀을 때
+        ) {
+          start = 1;
+          let newblock = Block(n, plus, start);
+        }
       }
       function Block(n, plus, start) {
         let [a, b, c, d, e, f] = [0, 0, 0, 0, 0, 0];
-        let [atop, btop, ctop, dtop, etop, ftop] = [
-          131, 131, 131, 131, 131, 131,
-        ];
+        let creatBlock = 0;
         let down = 13,
           max = 0,
           preplus = 0;
 
-        if (
-          atop / a <= 1 ||
-          btop / b <= 1 ||
-          ctop / c <= 1 ||
-          dtop / d <= 1 ||
-          etop / e <= 1 ||
-          ftop / f <= 1 ||
-          start == 0 //버튼 눌렀을 때
-        ) {
-          let randomBlock = Math.floor(Math.random() * 8);
-          start = 1; // 버튼 실행x
-          console.log(randomBlock);
+        // if (
+        //   start == 0 //버튼 눌렀을 때
+        // ) {
+        let randomBlock = Math.floor(Math.random() * 8);
+        start = 1; // 버튼 실행x
+        creatBlock = 1;
+        console.log(randomBlock);
 
-          // while (
-          //   //이 조건이 settimeout 조건으로?
-          //   a < atop ||
-          //   b < btop ||
-          //   c < ctop ||
-          //   d < dtop ||
-          //   e < etop ||
-          //   f < ftop
-          // ) {
-          // 리턴 값 여러개 중 or
-          switch (randomBlock) {
-            case 0:
-              [a, b, c, d, e, f] = _0line3(n, plus, "black");
-              max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
-              preplus = down - max;
-              pre(n, preplus, 0);
-              break;
-            case 1:
-              [a, b, c, d, e, f] = _1line4(n, plus, "black");
-              max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
-              preplus = down - max;
-              pre(n, preplus, 1);
-              break;
-            case 2:
-              [a, b, c, d, e, f] = _2rectangle4(n, plus, "black");
-              max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
-              preplus = down - max;
-              pre(n, preplus, 2);
-              break;
-            case 3:
-              [a, b, c, d, e, f] = _3rectangle6(n, plus, "black");
-              max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
-              preplus = down - max;
-              pre(n, preplus, 3);
-              break;
-            case 4:
-              [a, b, c, d, e, f] = _4giyeok3(n, plus, "black");
-              max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
-              preplus = down - max;
-              pre(n, preplus, 4);
-              break;
-            case 5:
-              [a, b, c, d, e, f] = _5L4(n, plus, "black");
-              max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
-              preplus = down - max;
-              pre(n, preplus, 5);
-              break;
-            case 6:
-              [a, b, c, d, e, f] = _6oo4(n, plus, "black");
-              max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
-              preplus = down - max;
-              pre(n, preplus, 6);
-              break;
-            case 7:
-              [a, b, c, d, e, f] = _7rieul4(n, plus, "black");
-              max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
-              preplus = down - max;
-              pre(n, preplus, 7);
-              break;
-            case 8:
-              [a, b, c, d, e, f] = _8uu6(n, plus, "black");
-              max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
-              preplus = down - max;
-              pre(n, preplus, 8);
-              break;
-          }
+        // while (
+        //   //이 조건이 settimeout 조건으로?
+        //   a < atop ||
+        //   b < btop ||
+        //   c < ctop ||
+        //   d < dtop ||
+        //   e < etop ||
+        //   f < ftop
+        // ) {
+        // 리턴 값 여러개 중 or
+        switch (randomBlock) {
+          case 0:
+            [a, b, c, d, e, f] = _0line3(n, plus, "rgb(100, 100, 100)");
+            max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
+            preplus = down - max;
+            pre(n, preplus, 0);
+            break;
+          case 1:
+            [a, b, c, d, e, f] = _1line4(n, plus, "rgb(100, 100, 100)");
+            max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
+            preplus = down - max;
+            pre(n, preplus, 1);
+            break;
+          case 2:
+            [a, b, c, d, e, f] = _2rectangle4(n, plus, "rgb(100, 100, 100)");
+            max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
+            preplus = down - max;
+            pre(n, preplus, 2);
+            break;
+          case 3:
+            [a, b, c, d, e, f] = _3rectangle6(n, plus, "rgb(100, 100, 100)");
+            max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
+            preplus = down - max;
+            pre(n, preplus, 3);
+            break;
+          case 4:
+            [a, b, c, d, e, f] = _4giyeok3(n, plus, "rgb(100, 100, 100)");
+            max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
+            preplus = down - max;
+            pre(n, preplus, 4);
+            break;
+          case 5:
+            [a, b, c, d, e, f] = _5L4(n, plus, "rgb(100, 100, 100)");
+            max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
+            preplus = down - max;
+            pre(n, preplus, 5);
+            break;
+          case 6:
+            [a, b, c, d, e, f] = _6oo4(n, plus, "rgb(100, 100, 100)");
+            max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
+            preplus = down - max;
+            pre(n, preplus, 6);
+            break;
+          case 7:
+            [a, b, c, d, e, f] = _7rieul4(n, plus, "rgb(100, 100, 100)");
+            max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
+            preplus = down - max;
+            pre(n, preplus, 7);
+            break;
+          case 8:
+            [a, b, c, d, e, f] = _8uu6(n, plus, "rgb(100, 100, 100)");
+            max = Math.floor(Math.max(a, b, c, d, e, f) / 10);
+            preplus = down - max;
+            pre(n, preplus, 8);
+            break;
         }
+
+        let intervalId = setInterval(function ddown() {
+          let [ca, cb, cc, cd, ce, cf] = [a, b, c, d, e, f];
+          [a, b, c, d, e, f] = [a + 10, b + 10, c + 10, d + 10, e + 10, f + 10]; // 내려가는거
+
+          // for (let j = 0; j < 6; j++) {
+          //   if ([a, b, c, d, e, f][j] == 0) {
+          //     [a, b, c, d, e, f][j] = 0;
+          //   } else {
+          //     [a, b, c, d, e, f][j] += 10;
+          //     document.getElementById(
+          //       [a, b, c, d, e, f][j]
+          //     ).style.backgroundColor = "rgb(100, 100, 100)";
+          //   }
+          // }
+          // [a, b, c, d, e, f] = [
+          //   a !== 0 ? a + 10 : 0,
+          //   b !== 0 ? b + 10 : 0,
+          //   c !== 0 ? c + 10 : 0,
+          //   d !== 0 ? d + 10 : 0,
+          //   e !== 0 ? e + 10 : 0,
+          //   f !== 0 ? f + 10 : 0,
+          // ];
+
+          document.getElementById(a).style.backgroundColor =
+            "rgb(100, 100, 100)";
+          document.getElementById(b).style.backgroundColor =
+            "rgb(100, 100, 100)";
+          document.getElementById(c).style.backgroundColor =
+            "rgb(100, 100, 100)";
+          document.getElementById(d).style.backgroundColor =
+            "rgb(100, 100, 100)";
+          document.getElementById(e).style.backgroundColor =
+            "rgb(100, 100, 100)";
+          document.getElementById(f).style.backgroundColor =
+            "rgb(100, 100, 100)";
+
+          for (let i = 0; i < 6; i++) {
+            let blockid = [a, b, c, d, e, f];
+            let still = blockid.some(
+              (blockid) => blockid === [ca, cb, cc, cd, ce, cf][i]
+            );
+            if (!still) {
+              document.getElementById(
+                [ca, cb, cc, cd, ce, cf][i]
+              ).style.backgroundColor = "rgb(209, 209, 209)";
+            }
+          }
+
+          // 모든 변수들이 131에서 140 사이 값인지 확인
+          if (
+            [a, b, c, d, e, f].some((block) => block >= 131 && block <= 140) ||
+            [a + 10, b + 10, c + 10, d + 10, e + 10, f + 10].some(
+              (block) =>
+                document.getElementById(block).style.backgroundColor ==
+                "rgb(70, 70, 70)"
+            )
+          ) {
+            clearInterval(intervalId);
+            for (let i = 0; i < 6; i++) {
+              document.getElementById(
+                [a, b, c, d, e, f][i]
+              ).style.backgroundColor = "rgb(70, 70, 70)";
+            }
+          }
+
+          // func(i++);
+        }, 1000);
+        // }
 
         // while (a < 131 && b < 131 && c < 131 && d < 131 && e < 131 && f < 131) {
         //   let [ca, cb, cc, cd, ce, cf] = [a, b, c, d, e, f];
         //   [a, b, c, d, e, f] = [a + 10, b + 10, c + 10, d + 10, e + 10, f + 10]; // 내려가는거
 
-        //   document.getElementById(a).style.backgroundColor = "black";
-        //   document.getElementById(b).style.backgroundColor = "black";
-        //   document.getElementById(c).style.backgroundColor = "black";
-        //   document.getElementById(d).style.backgroundColor = "black";
-        //   document.getElementById(e).style.backgroundColor = "black";
-        //   document.getElementById(f).style.backgroundColor = "black";
+        //   document.getElementById(a).style.backgroundColor = "rgb(100, 100, 100)";
+        //   document.getElementById(b).style.backgroundColor = "rgb(100, 100, 100)";
+        //   document.getElementById(c).style.backgroundColor = "rgb(100, 100, 100)";
+        //   document.getElementById(d).style.backgroundColor = "rgb(100, 100, 100)";
+        //   document.getElementById(e).style.backgroundColor = "rgb(100, 100, 100)";
+        //   document.getElementById(f).style.backgroundColor = "rgb(100, 100, 100)";
 
         //   let blockid = [a, b, c, d, e, f];
         //   let still = blockid.some(
@@ -313,57 +384,6 @@
         // }
 
         // let i = 1;
-        let intervalId = setInterval(function ddown() {
-          let [ca, cb, cc, cd, ce, cf] = [a, b, c, d, e, f];
-          [a, b, c, d, e, f] = [a + 10, b + 10, c + 10, d + 10, e + 10, f + 10]; // 내려가는거
-
-          // for (let j = 0; j < 6; j++) {
-          //   if ([a, b, c, d, e, f][j] == 0) {
-          //     [a, b, c, d, e, f][j] = 0;
-          //   } else {
-          //     [a, b, c, d, e, f][j] += 10;
-          //     document.getElementById(
-          //       [a, b, c, d, e, f][j]
-          //     ).style.backgroundColor = "black";
-          //   }
-          // }
-          // [a, b, c, d, e, f] = [
-          //   a !== 0 ? a + 10 : 0,
-          //   b !== 0 ? b + 10 : 0,
-          //   c !== 0 ? c + 10 : 0,
-          //   d !== 0 ? d + 10 : 0,
-          //   e !== 0 ? e + 10 : 0,
-          //   f !== 0 ? f + 10 : 0,
-          // ];
-
-          document.getElementById(a).style.backgroundColor = "black";
-          document.getElementById(b).style.backgroundColor = "black";
-          document.getElementById(c).style.backgroundColor = "black";
-          document.getElementById(d).style.backgroundColor = "black";
-          document.getElementById(e).style.backgroundColor = "black";
-          document.getElementById(f).style.backgroundColor = "black";
-
-          for (let i = 0; i < 6; i++) {
-            let blockid = [a, b, c, d, e, f];
-            let still = blockid.some(
-              (blockid) => blockid === [ca, cb, cc, cd, ce, cf][i]
-            );
-            if (!still && [ca, cb, cc, cd, ce, cf][i] !== 0) {
-              document.getElementById(
-                [ca, cb, cc, cd, ce, cf][i]
-              ).style.backgroundColor = "rgb(209, 209, 209)";
-            }
-          }
-
-          // 모든 변수들이 131에서 140 사이 값인지 확인
-          if (
-            [a, b, c, d, e, f].some((block) => block >= 131 && block <= 140)
-          ) {
-            clearInterval(intervalId);
-          }
-
-          // func(i++);
-        }, 1000);
 
         // let i = 1;
         // setTimeout(function ddown() {
@@ -371,12 +391,12 @@
         //   let [ca, cb, cc, cd, ce, cf] = [a, b, c, d, e, f];
         //   [a, b, c, d, e, f] = [a + 10, b + 10, c + 10, d + 10, e + 10, f + 10]; // 내려가는거
 
-        //   document.getElementById(a).style.backgroundColor = "black";
-        //   document.getElementById(b).style.backgroundColor = "black";
-        //   document.getElementById(c).style.backgroundColor = "black";
-        //   document.getElementById(d).style.backgroundColor = "black";
-        //   document.getElementById(e).style.backgroundColor = "black";
-        //   document.getElementById(f).style.backgroundColor = "black";
+        //   document.getElementById(a).style.backgroundColor = "rgb(100, 100, 100)";
+        //   document.getElementById(b).style.backgroundColor = "rgb(100, 100, 100)";
+        //   document.getElementById(c).style.backgroundColor = "rgb(100, 100, 100)";
+        //   document.getElementById(d).style.backgroundColor = "rgb(100, 100, 100)";
+        //   document.getElementById(e).style.backgroundColor = "rgb(100, 100, 100)";
+        //   document.getElementById(f).style.backgroundColor = "rgb(100, 100, 100)";
 
         //   document.getElementById(ca).style.backgroundColor =
         //     "rgb(209, 209, 209)";
@@ -397,47 +417,332 @@
         // }
       }
       function pre(n, plus, blo) {
-        let m = plus * 10;
+        // a, b, c, d, e, f
         //쌓인 블럭 번호 제거하고 그 위에 표시되게, n기준으로?
+        // let [pa, pb, pc, pd, pe, pf] = [a, b, c, d, e, f];
+
+        // while (true) {
+        //   if (
+        //     [pa + 10, pb + 10, pc + 10, pd + 10, pe + 10, pf + 10].some(
+        //       (block) => {
+        //         let element = document.getElementById(block);
+        //         return (
+        //           element && element.style.backgroundColor == "rgb(70, 70, 70)"
+        //         );
+        //       }
+        //     )
+        //   ) {
+
+        //   } else {
+        //     [pa, pb, pc, pd, pe, pf] = [
+        //       pa + 10,
+        //       pb + 10,
+        //       pc + 10,
+        //       pd + 10,
+        //       pe + 10,
+        //       pf + 10,
+        //     ];
+        //     break;
+        //   }
+        // }
+        //------------
+
+        // let min = Math.floor(Math.min(a, b, c, d, e, f) / 10);
+
+        //----------
+        // let min = Math.floor(
+        //   Math.min(...[pa, pb, pc, pd, pe, pf].filter((value) => value >= 0)) /
+        //     10
+        // );
+
+        // let m = min * 10;
+        //--------------
+
+        let m = plus * 10;
+        let nplus;
+
         switch (blo) {
           case 0:
-            _0line3(n, m, "gray");
+            // abcdef 중 제일 큰거 찾아서 n+1대신 넣기??
+            while (
+              document.getElementById(m + (n + 1)).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + n).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n - 1)).style.backgroundColor ==
+                "rgb(70, 70, 70)"
+            ) {
+              m -= 10;
+              if (
+                document.getElementById(m + (n + 1)).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + n).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n - 1)).style.backgroundColor !=
+                  "rgb(70, 70, 70)"
+              ) {
+                break;
+              }
+            }
+            // _0line3(n, m, "rgb(165, 165, 165)");
+            nplus = n + m;
+            document.getElementById(nplus - 1).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 1).style.backgroundColor =
+              "rgb(165, 165, 165)";
             break;
           case 1:
-            _1line4(n, m, "gray");
+            while (
+              document.getElementById(m + (n + 30)).style.backgroundColor ==
+              "rgb(70, 70, 70)"
+            ) {
+              m -= 10;
+              if (
+                document.getElementById(m + (n + 30)).style.backgroundColor !=
+                "rgb(70, 70, 70)"
+              ) {
+                break;
+              }
+            }
+            nplus = n + m;
+            // _1line4(n, m, "rgb(165, 165, 165)");
+            document.getElementById(nplus).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 10).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 20).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 30).style.backgroundColor =
+              "rgb(165, 165, 165)";
             break;
           case 2:
-            _2rectangle4(n, m, "gray");
+            while (
+              document.getElementById(m + (n + 10)).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 11)).style.backgroundColor ==
+                "rgb(70, 70, 70)"
+            ) {
+              m -= 10;
+              if (
+                document.getElementById(m + (n + 10)).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 11)).style.backgroundColor !=
+                  "rgb(70, 70, 70)"
+              ) {
+                break;
+              }
+            }
+            nplus = n + m;
+            document.getElementById(nplus).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 1).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 10).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 11).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            // _2rectangle4(n, m, "rgb(165, 165, 165)");
             break;
           case 3:
-            _3rectangle6(n, m, "gray");
+            while (
+              document.getElementById(m + (n + 20)).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 21)).style.backgroundColor ==
+                "rgb(70, 70, 70)"
+            ) {
+              m -= 10;
+              if (
+                document.getElementById(m + (n + 20)).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 21)).style.backgroundColor !=
+                  "rgb(70, 70, 70)"
+              ) {
+                break;
+              }
+            }
+            nplus = n + m;
+            document.getElementById(nplus).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 1).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 10).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 11).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 20).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 21).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            // _3rectangle6(n, m, "rgb(165, 165, 165)");
             break;
           case 4:
-            _4giyeok3(n, m, "gray");
+            while (
+              document.getElementById(m + n).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 11)).style.backgroundColor ==
+                "rgb(70, 70, 70)"
+            ) {
+              m -= 10;
+              if (
+                document.getElementById(m + n).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 11)).style.backgroundColor !=
+                  "rgb(70, 70, 70)"
+              ) {
+                break;
+              }
+            }
+            nplus = n + m;
+            document.getElementById(nplus).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 1).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 11).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            // _4giyeok3(n, m, "rgb(165, 165, 165)");
             break;
           case 5:
-            _5L4(n, m, "gray");
+            while (
+              document.getElementById(m + n).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 21)).style.backgroundColor ==
+                "rgb(70, 70, 70)"
+            ) {
+              m -= 10;
+              if (
+                document.getElementById(m + n).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 21)).style.backgroundColor !=
+                  "rgb(70, 70, 70)"
+              ) {
+                break;
+              }
+            }
+            nplus = n + m;
+            document.getElementById(nplus).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 10).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 20).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 21).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            // _5L4(n, m, "rgb(165, 165, 165)");
             break;
           case 6:
-            _6oo4(n, m, "gray");
+            while (
+              document.getElementById(m + (n + 9)).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 10)).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 11)).style.backgroundColor ==
+                "rgb(70, 70, 70)"
+            ) {
+              m -= 10;
+              if (
+                document.getElementById(m + (n + 9)).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 10)).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 11)).style.backgroundColor !=
+                  "rgb(70, 70, 70)"
+              ) {
+                break;
+              }
+            }
+            nplus = n + m;
+            document.getElementById(nplus).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 9).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 10).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 11).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            // _6oo4(n, m, "rgb(165, 165, 165)");
             break;
           case 7:
-            _7rieul4(n, m, "gray");
+            while (
+              document.getElementById(m + n).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 11)).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 12)).style.backgroundColor ==
+                "rgb(70, 70, 70)"
+            ) {
+              m -= 10;
+              if (
+                document.getElementById(m + n).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 11)).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 12)).style.backgroundColor !=
+                  "rgb(70, 70, 70)"
+              ) {
+                break;
+              }
+            }
+            nplus = n + m;
+            document.getElementById(nplus).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 1).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 11).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 12).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            // _7rieul4(n, m, "rgb(165, 165, 165)");
             break;
           case 8:
-            _8uu6(n, m, "gray");
+            while (
+              document.getElementById(m + n).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 2)).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 9)).style.backgroundColor ==
+                "rgb(70, 70, 70)" ||
+              document.getElementById(m + (n + 11)).style.backgroundColor ==
+                "rgb(70, 70, 70)"
+            ) {
+              m -= 10;
+              if (
+                document.getElementById(m + n).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 2)).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 9)).style.backgroundColor !=
+                  "rgb(70, 70, 70)" &&
+                document.getElementById(m + (n + 11)).style.backgroundColor !=
+                  "rgb(70, 70, 70)"
+              ) {
+                break;
+              }
+            }
+            nplus = n + m;
+            document.getElementById(nplus - 1).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 1).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 2).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 9).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            document.getElementById(nplus + 11).style.backgroundColor =
+              "rgb(165, 165, 165)";
+            // _8uu6(n, m, "rgb(165, 165, 165)");
             break;
         }
       }
       function _0line3(n, plus, col) {
         let nplus = n + plus;
-        let line3_1 = document.getElementById(nplus - 1);
-        let line3_2 = document.getElementById(nplus);
-        let line3_3 = document.getElementById(nplus + 1);
+        document.getElementById(nplus - 1).style.backgroundColor = col;
+        document.getElementById(nplus).style.backgroundColor = col;
+        document.getElementById(nplus + 1).style.backgroundColor = col;
 
-        line3_1.style.backgroundColor = col;
-        line3_2.style.backgroundColor = col;
-        line3_3.style.backgroundColor = col;
         return [nplus - 1, nplus, nplus + 1, -1000, -1000, -1000];
 
         // let bm = [
@@ -470,15 +775,11 @@
       }
       function _1line4(n, plus, col) {
         let nplus = n + plus;
-        let line4_1 = document.getElementById(nplus);
-        let line4_2 = document.getElementById(nplus + 10);
-        let line4_3 = document.getElementById(nplus + 20);
-        let line4_4 = document.getElementById(nplus + 30);
+        document.getElementById(nplus).style.backgroundColor = col;
+        document.getElementById(nplus + 10).style.backgroundColor = col;
+        document.getElementById(nplus + 20).style.backgroundColor = col;
+        document.getElementById(nplus + 30).style.backgroundColor = col;
 
-        line4_1.style.backgroundColor = col;
-        line4_2.style.backgroundColor = col;
-        line4_3.style.backgroundColor = col;
-        line4_4.style.backgroundColor = col;
         return [nplus, nplus + 10, nplus + 20, nplus + 30, -1000, -1000];
 
         // let bm = [
@@ -489,106 +790,75 @@
       }
       function _2rectangle4(n, plus, col) {
         let nplus = n + plus;
-        let rectangle4_1 = document.getElementById(nplus);
-        let rectangle4_2 = document.getElementById(nplus + 1);
-        let rectangle4_3 = document.getElementById(nplus + 10);
-        let rectangle4_4 = document.getElementById(nplus + 11);
+        document.getElementById(nplus).style.backgroundColor = col;
+        document.getElementById(nplus + 1).style.backgroundColor = col;
+        document.getElementById(nplus + 10).style.backgroundColor = col;
+        document.getElementById(nplus + 11).style.backgroundColor = col;
 
-        rectangle4_1.style.backgroundColor = col;
-        rectangle4_2.style.backgroundColor = col;
-        rectangle4_3.style.backgroundColor = col;
-        rectangle4_4.style.backgroundColor = col;
         return [nplus, nplus + 1, nplus + 10, nplus + 11, -1000, -1000];
       }
       function _3rectangle6(n, plus, col) {
         let nplus = n + plus;
-        let rectangle6_1 = document.getElementById(nplus);
-        let rectangle6_2 = document.getElementById(nplus + 1);
-        let rectangle6_3 = document.getElementById(nplus + 10);
-        let rectangle6_4 = document.getElementById(nplus + 11);
-        let rectangle6_5 = document.getElementById(nplus + 20);
-        let rectangle6_6 = document.getElementById(nplus + 21);
+        document.getElementById(nplus).style.backgroundColor = col;
+        document.getElementById(nplus + 1).style.backgroundColor = col;
+        document.getElementById(nplus + 10).style.backgroundColor = col;
+        document.getElementById(nplus + 11).style.backgroundColor = col;
+        document.getElementById(nplus + 20).style.backgroundColor = col;
+        document.getElementById(nplus + 21).style.backgroundColor = col;
 
-        rectangle6_1.style.backgroundColor = col;
-        rectangle6_2.style.backgroundColor = col;
-        rectangle6_3.style.backgroundColor = col;
-        rectangle6_4.style.backgroundColor = col;
-        rectangle6_5.style.backgroundColor = col;
-        rectangle6_6.style.backgroundColor = col;
         return [
           nplus,
           nplus + 1,
           nplus + 10,
-          nplus + 1,
+          nplus + 11,
           nplus + 20,
           nplus + 21,
         ];
       }
       function _4giyeok3(n, plus, col) {
         let nplus = n + plus;
-        let giyeok3_1 = document.getElementById(nplus);
-        let giyeok3_2 = document.getElementById(nplus + 1);
-        let giyeok3_3 = document.getElementById(nplus + 11);
+        document.getElementById(nplus).style.backgroundColor = col;
+        document.getElementById(nplus + 1).style.backgroundColor = col;
+        document.getElementById(nplus + 11).style.backgroundColor = col;
 
-        giyeok3_1.style.backgroundColor = col;
-        giyeok3_2.style.backgroundColor = col;
-        giyeok3_3.style.backgroundColor = col;
         return [nplus, nplus + 1, nplus + 11, -1000, -1000, -1000];
       }
       function _5L4(n, plus, col) {
         let nplus = n + plus;
-        let L4_1 = document.getElementById(nplus);
-        let L4_2 = document.getElementById(nplus + 10);
-        let L4_3 = document.getElementById(nplus + 20);
-        let L4_4 = document.getElementById(nplus + 21);
+        document.getElementById(nplus).style.backgroundColor = col;
+        document.getElementById(nplus + 10).style.backgroundColor = col;
+        document.getElementById(nplus + 20).style.backgroundColor = col;
+        document.getElementById(nplus + 21).style.backgroundColor = col;
 
-        L4_1.style.backgroundColor = col;
-        L4_2.style.backgroundColor = col;
-        L4_3.style.backgroundColor = col;
-        L4_4.style.backgroundColor = col;
         return [nplus, nplus + 10, nplus + 20, nplus + 21, -1000, -1000];
       }
       function _6oo4(n, plus, col) {
         let nplus = n + plus;
-        let oo4_1 = document.getElementById(nplus);
-        let oo4_2 = document.getElementById(nplus + 9);
-        let oo4_3 = document.getElementById(nplus + 10);
-        let oo4_4 = document.getElementById(nplus + 11);
+        document.getElementById(nplus).style.backgroundColor = col;
+        document.getElementById(nplus + 9).style.backgroundColor = col;
+        document.getElementById(nplus + 10).style.backgroundColor = col;
+        document.getElementById(nplus + 11).style.backgroundColor = col;
 
-        oo4_1.style.backgroundColor = col;
-        oo4_2.style.backgroundColor = col;
-        oo4_3.style.backgroundColor = col;
-        oo4_4.style.backgroundColor = col;
         return [nplus, nplus + 9, nplus + 10, nplus + 11, -1000, -1000];
       }
       function _7rieul4(n, plus, col) {
         let nplus = n + plus;
-        let rieul4_1 = document.getElementById(nplus);
-        let rieul4_2 = document.getElementById(nplus + 1);
-        let rieul4_3 = document.getElementById(nplus + 11);
-        let rieul4_4 = document.getElementById(nplus + 12);
+        document.getElementById(nplus).style.backgroundColor = col;
+        document.getElementById(nplus + 1).style.backgroundColor = col;
+        document.getElementById(nplus + 11).style.backgroundColor = col;
+        document.getElementById(nplus + 12).style.backgroundColor = col;
 
-        rieul4_1.style.backgroundColor = col;
-        rieul4_2.style.backgroundColor = col;
-        rieul4_3.style.backgroundColor = col;
-        rieul4_4.style.backgroundColor = col;
         return [nplus, nplus + 1, nplus + 11, nplus + 12, -1000, -1000];
       }
       function _8uu6(n, plus, col) {
         let nplus = n + plus;
-        let uu6_1 = document.getElementById(nplus - 1);
-        let uu6_2 = document.getElementById(nplus);
-        let uu6_3 = document.getElementById(nplus + 1);
-        let uu6_4 = document.getElementById(nplus + 2);
-        let uu6_5 = document.getElementById(nplus + 9);
-        let uu6_6 = document.getElementById(nplus + 11);
+        document.getElementById(nplus - 1).style.backgroundColor = col;
+        document.getElementById(nplus).style.backgroundColor = col;
+        document.getElementById(nplus + 1).style.backgroundColor = col;
+        document.getElementById(nplus + 2).style.backgroundColor = col;
+        document.getElementById(nplus + 9).style.backgroundColor = col;
+        document.getElementById(nplus + 11).style.backgroundColor = col;
 
-        uu6_1.style.backgroundColor = col;
-        uu6_2.style.backgroundColor = col;
-        uu6_3.style.backgroundColor = col;
-        uu6_4.style.backgroundColor = col;
-        uu6_5.style.backgroundColor = col;
-        uu6_6.style.backgroundColor = col;
         return [nplus - 4, nplus, nplus + 1, nplus + 2, nplus + 9, nplus + 11];
       }
     </script>
