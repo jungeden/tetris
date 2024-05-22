@@ -183,6 +183,11 @@
       <div class="box button" onclick="main()">시작</div>
     </div>
     <script>
+      const EMPTY = -1000;
+
+      function setBlockColor(id, col) {
+        document.getElementById(id).style.backgroundColor = col;
+      }
       function main() {
         // 블럭이 위에 찰 때 까지?? 반복하는거. while 쓰기.
         let n = 5;
@@ -304,29 +309,96 @@
           //   e !== 0 ? e + 10 : 0,
           //   f !== 0 ? f + 10 : 0,
           // ];
+          for (let i = 0; i < 6; i++) {
+            delblock = [ca, cb, cc, cd, ce, cf];
+            document.getElementById(delblock[i]).style.backgroundColor =
+              "rgb(209, 209, 209)";
+          }
+          setBlockColor(a, "rgb(100, 100, 100)");
+          setBlockColor(b, "rgb(100, 100, 100)");
+          setBlockColor(c, "rgb(100, 100, 100)");
+          setBlockColor(d, "rgb(100, 100, 100)");
+          setBlockColor(e, "rgb(100, 100, 100)");
+          setBlockColor(f, "rgb(100, 100, 100)");
 
-          document.getElementById(a).style.backgroundColor =
-            "rgb(100, 100, 100)";
-          document.getElementById(b).style.backgroundColor =
-            "rgb(100, 100, 100)";
-          document.getElementById(c).style.backgroundColor =
-            "rgb(100, 100, 100)";
-          document.getElementById(d).style.backgroundColor =
-            "rgb(100, 100, 100)";
-          document.getElementById(e).style.backgroundColor =
-            "rgb(100, 100, 100)";
-          document.getElementById(f).style.backgroundColor =
-            "rgb(100, 100, 100)";
+          //왼쪽 화살표
+          document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft") {
+              console.log("left");
+              // let [la, lb, lc, ld, le, lf] = ([a, b, c, d, e, f][(la, lb, lc, ld, le, lf)] = [a - 1, b - 1, c - 1, d - 1, e - 1, f - 1]);
+              // [a, b, c, d, e, f] =
+              let [la, lb, lc, ld, le, lf] = [a, b, c, d, e, f];
+              if (
+                // 왼쪽으로 한칸 움직였을 때 하나라도 왼쪽 끝이면 그대로
+                [la, lb, lc, ld, le, lf].some(
+                  // 5678 4567
+                  (leftblock) =>
+                    leftblock !=
+                    [1, 11, 21, 31, 41, 51, 61, 71, 81, 91, 101, 111, 121, 131]
+                )
+              ) {
+                for (let i = 0; i < 6; i++) {
+                  let lblockid = [a - 9, b - 9, c - 9, d - 9, e - 9, f - 9]; //5678
+                  document.getElementById(lblockid[i]).style.backgroundColor =
+                    "rgb(209, 209, 209)";
+                  lblockid = [a, b, c, d, e, f]; //5678
+                  document.getElementById(lblockid[i]).style.backgroundColor =
+                    "rgb(209, 209, 209)";
+
+                  // let still = lblockid.some(
+                  //   // 원래 값이랑 왼쪽으로 한 칸 움직인 값 (배열의 첫번째 숫자) 같으면
+                  //   (lblockid) =>
+                  //     lblockid == [a - 1, b - 1, c - 1, d - 1, e - 1, f - 1][i] //5678 4567
+                  // );
+                  // if (!still) {
+                  //   // 다르면 지우기
+                  //   document.getElementById(
+                  //     [la, lb, lc, ld, le, lf][i] //5678 -> 567
+                  //   ).style.backgroundColor = "rgb(209, 209, 209)";
+                  // }
+                  [a, b, c, d, e, f] = [
+                    la - 1,
+                    lb - 1,
+                    lc - 1,
+                    ld - 1,
+                    le - 1,
+                    lf - 1,
+                  ];
+                  [ca, cb, cc, cd, ce, cf] = [a, b, c, d, e, f];
+                }
+              }
+            }
+          });
+
+          //---------------------------------------------
+          // document.addEventListener("keydown", (event) => {
+          //   if (event.key === "ArrowLeft") {
+          //     [ca, cb, cc, cd, ce, cf] = moveLeft(ca, cb, cc, cd, ce, cf);
+          //   }
+          // });
+          //----------------------------------------------------
+
+          // [a, b, c, d, e, f] = key(a, b, c, d, e, f);
+          // [ca, cb, cc, cd, ce, cf] = [a, b, c, d, e, f];
+
+          //-----------------------------------
 
           for (let i = 0; i < 6; i++) {
             let blockid = [a, b, c, d, e, f];
+
             let still = blockid.some(
-              (blockid) => blockid === [ca, cb, cc, cd, ce, cf][i]
+              (blockid) => blockid == [ca, cb, cc, cd, ce, cf][i]
             );
             if (!still) {
               document.getElementById(
                 [ca, cb, cc, cd, ce, cf][i]
               ).style.backgroundColor = "rgb(209, 209, 209)";
+              for (let n = 0; n < 0; ) {
+                document.getElementById(
+                  [ca, cb, cc, cd, ce, cf][i - n]
+                ).style.backgroundColor = "rgb(209, 209, 209)";
+                n = i - 10;
+              }
             }
           }
 
@@ -349,6 +421,7 @@
 
           // func(i++);
         }, 1000);
+
         // }
 
         // while (a < 131 && b < 131 && c < 131 && d < 131 && e < 131 && f < 131) {
@@ -414,6 +487,73 @@
         //   func(i++);
         //   setTimeout(ddown, 1000);
         // }, 1000);
+        // }
+      }
+      function key(a, b, c, d, e, f) {
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowLeft") {
+            [a, b, c, d, e, f] = moveLeft(a, b, c, d, e, f);
+          } else {
+            [a, b, c, d, e, f] = [a, b, c, d, e, f];
+          }
+          // else if (even.key === "ArrowRight") {}
+        });
+        return [a, b, c, d, e, f];
+      }
+      function moveLeft(a, b, c, d, e, f) {
+        console.log("left");
+        let [la, lb, lc, ld, le, lf] = [a, b, c, d, e, f];
+        if (
+          // 왼쪽으로 한칸 움직였을 때 하나라도 왼쪽 끝이면 그대로
+          [la, lb, lc, ld, le, lf].some(
+            // 5678 4567
+            (leftblock) =>
+              leftblock !=
+              [1, 11, 21, 31, 41, 51, 61, 71, 81, 91, 101, 111, 121, 131]
+          )
+        ) {
+          for (let i = 0; i < 6; i++) {
+            let lblockid = [a, b, c, d, e, f]; //5678
+            document.getElementById(lblockid[i]).style.backgroundColor =
+              "rgb(209, 209, 209)";
+
+            [a, b, c, d, e, f] = [
+              la - 1,
+              lb - 1,
+              lc - 1,
+              ld - 1,
+              le - 1,
+              lf - 1,
+            ];
+          }
+        }
+        return [a, b, c, d, e, f];
+        // let [la, lb, lc, ld, le, lf] = [a, b, c, d, e, f];
+
+        // // 왼쪽으로 한칸 움직였을 때 하나라도 왼쪽 끝이면 그대로
+        // if (
+        //   [la, lb, lc, ld, le, lf].some(
+        //     (leftBlock) =>
+        //       ![
+        //         1, 11, 21, 31, 41, 51, 61, 71, 81, 91, 101, 111, 121, 131,
+        //       ].includes(leftBlock)
+        //   )
+        // ) {
+        //   for (let i = 0; i < 6; i++) {
+        //     let lblockid = [a, b, c, d, e, f];
+        //     document.getElementById(lblockid[i]).style.backgroundColor =
+        //       "rgb(209, 209, 209)";
+
+        //     [a, b, c, d, e, f] = [
+        //       la - 1,
+        //       lb - 1,
+        //       lc - 1,
+        //       ld - 1,
+        //       le - 1,
+        //       lf - 1,
+        //     ];
+        //     [la, lb, lc, ld, le, lf] = [a, b, c, d, e, f];
+        //   }
         // }
       }
       function pre(n, plus, blo) {
@@ -739,11 +879,15 @@
       }
       function _0line3(n, plus, col) {
         let nplus = n + plus;
-        document.getElementById(nplus - 1).style.backgroundColor = col;
-        document.getElementById(nplus).style.backgroundColor = col;
-        document.getElementById(nplus + 1).style.backgroundColor = col;
+        // document.getElementById(nplus - 1).style.backgroundColor = col;
+        // document.getElementById(nplus).style.backgroundColor = col;
+        // document.getElementById(nplus + 1).style.backgroundColor = col;
 
-        return [nplus - 1, nplus, nplus + 1, -1000, -1000, -1000];
+        setBlockColor(nplus - 1, col);
+        setBlockColor(nplus, col);
+        setBlockColor(nplus + 1, col);
+
+        return [nplus - 1, nplus, nplus + 1, EMPTY, EMPTY, EMPTY];
 
         // let bm = [
         //   [1, 1, 1], //bm[0][0] bm[0][1] bm[0][2]
@@ -775,12 +919,12 @@
       }
       function _1line4(n, plus, col) {
         let nplus = n + plus;
-        document.getElementById(nplus).style.backgroundColor = col;
-        document.getElementById(nplus + 10).style.backgroundColor = col;
-        document.getElementById(nplus + 20).style.backgroundColor = col;
-        document.getElementById(nplus + 30).style.backgroundColor = col;
+        setBlockColor(nplus, col);
+        setBlockColor(nplus + 10, col);
+        setBlockColor(nplus + 20, col);
+        setBlockColor(nplus + 30, col);
 
-        return [nplus, nplus + 10, nplus + 20, nplus + 30, -1000, -1000];
+        return [nplus, nplus + 10, nplus + 20, nplus + 30, EMPTY, EMPTY];
 
         // let bm = [
         //   [1], //bm[0][0]
@@ -790,21 +934,21 @@
       }
       function _2rectangle4(n, plus, col) {
         let nplus = n + plus;
-        document.getElementById(nplus).style.backgroundColor = col;
-        document.getElementById(nplus + 1).style.backgroundColor = col;
-        document.getElementById(nplus + 10).style.backgroundColor = col;
-        document.getElementById(nplus + 11).style.backgroundColor = col;
+        setBlockColor(nplus, col);
+        setBlockColor(nplus + 1, col);
+        setBlockColor(nplus + 10, col);
+        setBlockColor(nplus + 11, col);
 
-        return [nplus, nplus + 1, nplus + 10, nplus + 11, -1000, -1000];
+        return [nplus, nplus + 1, nplus + 10, nplus + 11, EMPTY, EMPTY];
       }
       function _3rectangle6(n, plus, col) {
         let nplus = n + plus;
-        document.getElementById(nplus).style.backgroundColor = col;
-        document.getElementById(nplus + 1).style.backgroundColor = col;
-        document.getElementById(nplus + 10).style.backgroundColor = col;
-        document.getElementById(nplus + 11).style.backgroundColor = col;
-        document.getElementById(nplus + 20).style.backgroundColor = col;
-        document.getElementById(nplus + 21).style.backgroundColor = col;
+        setBlockColor(nplus, col);
+        setBlockColor(nplus + 1, col);
+        setBlockColor(nplus + 10, col);
+        setBlockColor(nplus + 11, col);
+        setBlockColor(nplus + 20, col);
+        setBlockColor(nplus + 21, col);
 
         return [
           nplus,
@@ -817,47 +961,46 @@
       }
       function _4giyeok3(n, plus, col) {
         let nplus = n + plus;
-        document.getElementById(nplus).style.backgroundColor = col;
-        document.getElementById(nplus + 1).style.backgroundColor = col;
-        document.getElementById(nplus + 11).style.backgroundColor = col;
-
-        return [nplus, nplus + 1, nplus + 11, -1000, -1000, -1000];
+        setBlockColor(nplus, col);
+        setBlockColor(nplus + 1, col);
+        setBlockColor(nplus + 11, col);
+        return [nplus, nplus + 1, nplus + 11, EMPTY, EMPTY, EMPTY];
       }
       function _5L4(n, plus, col) {
         let nplus = n + plus;
-        document.getElementById(nplus).style.backgroundColor = col;
-        document.getElementById(nplus + 10).style.backgroundColor = col;
-        document.getElementById(nplus + 20).style.backgroundColor = col;
-        document.getElementById(nplus + 21).style.backgroundColor = col;
+        setBlockColor(nplus, col);
+        setBlockColor(nplus + 10, col);
+        setBlockColor(nplus + 20, col);
+        setBlockColor(nplus + 21, col);
 
-        return [nplus, nplus + 10, nplus + 20, nplus + 21, -1000, -1000];
+        return [nplus, nplus + 10, nplus + 20, nplus + 21, EMPTY, EMPTY];
       }
       function _6oo4(n, plus, col) {
         let nplus = n + plus;
-        document.getElementById(nplus).style.backgroundColor = col;
-        document.getElementById(nplus + 9).style.backgroundColor = col;
-        document.getElementById(nplus + 10).style.backgroundColor = col;
-        document.getElementById(nplus + 11).style.backgroundColor = col;
+        setBlockColor(nplus, col);
+        setBlockColor(nplus + 9, col);
+        setBlockColor(nplus + 10, col);
+        setBlockColor(nplus + 11, col);
 
-        return [nplus, nplus + 9, nplus + 10, nplus + 11, -1000, -1000];
+        return [nplus, nplus + 9, nplus + 10, nplus + 11, EMPTY, EMPTY];
       }
       function _7rieul4(n, plus, col) {
         let nplus = n + plus;
-        document.getElementById(nplus).style.backgroundColor = col;
-        document.getElementById(nplus + 1).style.backgroundColor = col;
-        document.getElementById(nplus + 11).style.backgroundColor = col;
-        document.getElementById(nplus + 12).style.backgroundColor = col;
+        setBlockColor(nplus, col);
+        setBlockColor(nplus + 1, col);
+        setBlockColor(nplus + 11, col);
+        setBlockColor(nplus + 12, col);
 
-        return [nplus, nplus + 1, nplus + 11, nplus + 12, -1000, -1000];
+        return [nplus, nplus + 1, nplus + 11, nplus + 12, EMPTY, EMPTY];
       }
       function _8uu6(n, plus, col) {
         let nplus = n + plus;
-        document.getElementById(nplus - 1).style.backgroundColor = col;
-        document.getElementById(nplus).style.backgroundColor = col;
-        document.getElementById(nplus + 1).style.backgroundColor = col;
-        document.getElementById(nplus + 2).style.backgroundColor = col;
-        document.getElementById(nplus + 9).style.backgroundColor = col;
-        document.getElementById(nplus + 11).style.backgroundColor = col;
+        setBlockColor(nplus - 1, col);
+        setBlockColor(nplus, col);
+        setBlockColor(nplus + 1, col);
+        setBlockColor(nplus + 2, col);
+        setBlockColor(nplus + 9, col);
+        setBlockColor(nplus + 11, col);
 
         return [nplus - 4, nplus, nplus + 1, nplus + 2, nplus + 9, nplus + 11];
       }
