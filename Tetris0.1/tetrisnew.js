@@ -17,9 +17,13 @@ class newblock {
   creatblock() {
     document.getElementById(this.initnum + this.plus).style.backgroundColor =
       this.blockcolor;
+      
+  }
+  preblock() {
+    
   }
 }
 
-class Blockdown {
-  constructor() {}
-}
+// class Blockdown {
+//   constructor() {}
+// }
